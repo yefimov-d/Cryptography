@@ -22,7 +22,7 @@ $$
 $$
 
 1) Factor each number into primes.  
-2) For each number \(n_i\), find its largest prime divisor $P(n_i)$.  
+2) For each number $n_i$, find its largest prime divisor $P(n_i)$.  
 3) Compute the sum
 
 $$
@@ -46,7 +46,7 @@ $$
 $$
 
 1. Take the **first letter** of your cleaned email.  
-2. Let `k` be the decimal **ASCII value** of this letter
+2. Let `k` be the decimal **ASCII value** of this letter (see https://www.ascii-code.com/).
 
 Calculate the value of $S$:
 
@@ -96,7 +96,7 @@ $$
 In AES, bytes are interpreted as elements of the finite field 
 
 $$
-\mathbb{F}_{2^8} = \mathbb{F}_2[x] \,/\, (x^8 + x^4 + x^3 + x + 1).
+\mathbb{F}_{2^8} = \mathbb{F}_2[x] / (x^8 + x^4 + x^3 + x + 1).
 $$
 
 That is, each byte is treated as a polynomial over \(\mathbb{F}_2\), and multiplication is performed modulo the irreducible polynomial
