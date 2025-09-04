@@ -794,22 +794,22 @@ $$
 
 - $0x57 = \text{binary }01010111$  
 
-  $$
-  a(x)=x^6 + x^4 + x^2 + x + 1
-  $$
+$$
+a(x)=x^6 + x^4 + x^2 + x + 1
+$$
 
 - $0x83 = \text{binary }10000011$  
 
-  $$
-  b(x)=x^7 + x + 1
-  $$
+$$
+b(x)=x^7 + x + 1
+$$
 
 (Convention: bit $b_i$ ↔ coefficient of $x^i$.)
 
 
 **2) Multiply as polynomials (carry-less, coefficients mod 2)**
 
-Compute partial products (shifted copies of $a(x)$) corresponding to the 1-bits of $b(x)$:
+Compute partial products (shifted copies of $a(x)$ ) corresponding to the 1-bits of $b(x)$:
 
 - $a(x)\cdot 1 = x^6 + x^4 + x^2 + x + 1$
 

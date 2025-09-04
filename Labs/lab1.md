@@ -16,6 +16,7 @@ That is:
 ## Question 1 — Factorization
 
 **Given four integers:**
+
 $$
 72; 95; 126; 143.
 $$
@@ -23,6 +24,7 @@ $$
 1) Factor each number into primes.  
 2) For each number \(n_i\), find its largest prime divisor $P(n_i)$.  
 3) Compute the sum
+
 $$
 S=\sum_{i=1}^{4} P(n_i).
 $$
