@@ -40,11 +40,11 @@ The result is 16 bits (presented in binary). For example, `0110001011101100`.
 
 ## Question 4 — One-Time-Pad
 
-Let the Ukrainian alphabet be indexed \(0,\dots,N-1\) (take \(N=33\)). Using additive one-time-pad encryption  
+Let the Ukrainian alphabet be indexed $0,\dots,N-1$ (take $N=33$). Using additive one-time-pad encryption  
 
-\[
+$$
 C_i = (P_i + K_i) \bmod N,
-\]
+$$
 
 determine the key which, when applied to the plaintext **«муха»**, produces the ciphertext **«слон»**. Show your letter-to-index mapping and all intermediate calculations.
 
