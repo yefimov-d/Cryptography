@@ -25,11 +25,11 @@ Block ciphers encrypt fixed-size blocks, but most practical messages are longer 
 - **Description**: Each plaintext block is encrypted independently using the same key.
 - **Encryption**: 
 
-  $$ C_i = E_K(P_i) $$
+$$ C_i = E_K(P_i) $$
 
 - **Decryption**:
 
-  $$ P_i = D_K(C_i) $$
+$$ P_i = D_K(C_i) $$
 
 - **Pros**: Simple, allows parallel encryption/decryption of blocks.
 
@@ -40,13 +40,13 @@ Block ciphers encrypt fixed-size blocks, but most practical messages are longer 
 - **Description**: Each plaintext block is XORed with the previous ciphertext block before encryption.
 - **Encryption**:
 
-  $$ C_0 = IV $$
+$$ C_0 = IV $$
 
-  $$ C_i = E_K(P_i \oplus C_{i-1}) $$
+$$ C_i = E_K(P_i \oplus C_{i-1}) $$
 
 - **Decryption**:
 
-  $$ P_i = D_K(C_i) \oplus C_{i-1} $$
+$$ P_i = D_K(C_i) \oplus C_{i-1} $$
 
 - **Pros**: Conceals patterns in plaintext; widely used.
 - **Cons**: Sequential processing required; errors in one block propagate to the next block; requires a unique initialization vector (IV) for security.
@@ -56,13 +56,13 @@ Block ciphers encrypt fixed-size blocks, but most practical messages are longer 
 - **Description**: PCBC is a variant of CBC designed to propagate both plaintext and ciphertext changes to subsequent blocks, increasing error diffusion. Each plaintext block is XORed with both the previous plaintext and ciphertext blocks before encryption. PCBC is mainly of historical or academic interest, illustrating a method to enhance diffusion in block cipher modes. 
 - **Encryption**:
 
-  $$ C_0 = IV $$
+$$ C_0 = IV $$
 
-  $$ C_i = E_K(P_i \oplus P_{i-1} \oplus C_{i-1}) $$
+$$ C_i = E_K(P_i \oplus P_{i-1} \oplus C_{i-1}) $$
 
 - **Decryption**:
 
-  $$ P_i = D_K(C_i) \oplus P_{i-1} \oplus C_{i-1} $$
+$$ P_i = D_K(C_i) \oplus P_{i-1} \oplus C_{i-1} $$
 
 - **Pros**: A single-bit change in plaintext or ciphertext propagates to all subsequent blocks, improving error diffusion compared to CBC.  
 - **Cons**: Like CBC, sequential processing is required. A transmission error in one block corrupts all following blocks, making it sensitive to errors. Not widely used in practice due to error propagation risks and limited standardization.  
@@ -78,7 +78,7 @@ $$ C_i = P_i \oplus E_K(C_{i-1}) $$
 
 - **Decryption**:
 
-  $$ P_i = C_i \oplus E_K(C_{i-1}) $$
+$$ P_i = C_i \oplus E_K(C_{i-1}) $$
 
 - **Pros**: Can encrypt data smaller than block size; self-synchronizing if errors occur.
 - **Cons**: Sequential processing required; IV must be unpredictable.
@@ -87,15 +87,15 @@ $$ C_i = P_i \oplus E_K(C_{i-1}) $$
 - **Description**: Converts a block cipher into a synchronous stream cipher by generating a keystream.
 - **Keystream Generation**:
 
-  $$ O_0 = IV $$
+$$ O_0 = IV $$
 
-  $$ O_i = E_K(O_{i-1}) $$
+$$ O_i = E_K(O_{i-1}) $$
 
 - **Encryption/Decryption**:
 
-  $$ C_i = P_i \oplus O_i $$
+$$ C_i = P_i \oplus O_i $$
 
-  $$ P_i = C_i \oplus O_i $$
+$$ P_i = C_i \oplus O_i $$
 
 - **Pros**: Pre-computation of keystream possible; errors in transmission do not propagate.
 - **Cons**: If IV repeats, security is compromised; sequential processing of keystream needed.
@@ -104,11 +104,11 @@ $$ C_i = P_i \oplus E_K(C_{i-1}) $$
 - **Description**: Each block is XORed with the encryption of a counter value. Allows parallel processing.
 - **Encryption**:
 
-  $$ C_i = P_i \oplus E_K(Nonce \| Counter_i) $$
+$$ C_i = P_i \oplus E_K(Nonce \| Counter_i) $$
 
 - **Decryption**:
 
-  $$ P_i = C_i \oplus E_K(Nonce \| Counter_i) $$
+$$ P_i = C_i \oplus E_K(Nonce \| Counter_i) $$
 
 - **Pros**: Supports parallel encryption/decryption; random access possible; errors do not propagate.
 - **Cons**: Counter/nonce must be unique for each encryption with the same key; otherwise, security is compromised.
@@ -578,6 +578,7 @@ b_2 \\
 b_3
 \end{bmatrix}
 $$
+
 **Purpose**: Ensures mixing of bytes within a column (diffusion).
 
 ![1](https://upload.wikimedia.org/wikipedia/commons/7/76/AES-MixColumns.svg)
