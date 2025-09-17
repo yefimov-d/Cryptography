@@ -116,15 +116,17 @@ A Deterministic Random Bit Generator (DRBG) is a pseudorandom number generator d
    - The counter is incremented for each block.  
    - The concatenation of these encrypted blocks forms the pseudorandom output.
 
-   Mathematically:  
-   $$
-   R_i = AES_K(V + i)
-   $$
-   where:  
-   - $K$ is the secret AES key,  
-   - $V$ is the counter value,  
-   - $i$ is the block index,  
-   - $R_i$ is the output block.
+   Mathematically: 
+
+$$
+R_i = AES_K(V + i)
+$$
+
+where:  
+- $K$ is the secret AES key,  
+- $V$ is the counter value,  
+- $i$ is the block index,  
+- $R_i$ is the output block.
 
 3. **Reseeding**  
    - Periodically, the DRBG is reseeded with new entropy to maintain security.
@@ -490,7 +492,7 @@ Strumok is a word-oriented symmetric stream cipher, standardized in Ukraine (DST
 - Works with **64-bit words**. 
 - Key lengths: **256 bits** or **512 bits**. 
 - Initialization Vector (IV): 256 bits, public.
-- Internal state size: composed of a Linear Feedback Shift Register (LFSR) of length 16 over the field $ \mathbb{F}_{2^{64}} $, plus a finite state machine with two 64-bit registers. 
+- Internal state size: composed of a Linear Feedback Shift Register (LFSR) of length 16 over the field $F_{2^{64}}$, plus a finite state machine with two 64-bit registers. 
 
 **More details in**  [paper.](https://nure.ua/wp-content/uploads/2018/Scientific_editions/rvmnts_2018_193_4.pdf)
 
