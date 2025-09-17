@@ -72,7 +72,7 @@ $$
 The number of digests $k$ required for a **50%** chance of at least one collision is
 
 $$
-k_{50\%} \approx \sqrt{2\ln 2}\;\; 2^{\,n/2} \approx 1.17741\;2^{\,n/2}.
+k_{50\%} \approx \sqrt{2\ln 2} \cdot 2^{n/2} \approx 1.17741 \cdot 2^{\,n/2}.
 $$
 
 So you need only about $1.177\times 2^{n/2}$ items for a coin-flip chance of collision.
@@ -321,7 +321,7 @@ Structure: Substitution–Permutation Network (SPN), AES-like round structure bu
 Number of rounds: depends on parameters — typically $10$ rounds (for 128-bit keys), $14$ rounds (for 256-bit keys), $18$ rounds (for 512-bit keys). 
 
 
-Kalyna is an AES-style SPN chosen as Ukraine's national cipher standard. It supports large block and key sizes ($128$–$512$ bits) and uses distinct S-boxes, MDS linear layers and a specialized key schedule to achieve diffusion and security for those sizes. While reduced-round cryptanalysis exists (as is typical for new ciphers), full-round Kalyna remains unbroken in practice and is intended for implementations that need the DSTU standard or the larger block/key options. 
+Kalyna is an AES-style SPN chosen as Ukraine's national cipher standard. It supports large block and key sizes (128–512 bits) and uses distinct S-boxes, MDS linear layers and a specialized key schedule to achieve diffusion and security for those sizes. While reduced-round cryptanalysis exists (as is typical for new ciphers), full-round Kalyna remains unbroken in practice and is intended for implementations that need the DSTU standard or the larger block/key options. 
 
 ---
 
