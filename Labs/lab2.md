@@ -17,6 +17,7 @@ That is:
 Encrypt your transformed email username using the **Caesar cipher**.  
 **Key**: the first letter of your transformed email.  
 
+The answer must be given as a sequence of English lowercase letters without quotation marks.
 
 ---
 
@@ -24,6 +25,7 @@ Encrypt your transformed email username using the **Caesar cipher**.
 Encrypt the same transformed username using the **Vigenère cipher**.  
 **Key**: the first three letters of your transformed email.  
 
+The answer must be given as a sequence of English lowercase letters without quotation marks.
 
 ---
 
