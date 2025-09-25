@@ -16,6 +16,8 @@ That is:
 ## Question 1 — DES
 Encrypt the first block of your cleaned email using DES in ECB mode with the key: ``133457799BBCDFF1``
 
+If the input data is **shorter than 8 characters**, pad it with `\x00` bytes (null bytes) to make it exactly 8 bytes. If the email is **longer**, only the first 8 characters are used.
+
 Give the ciphertext in hex.
 
 For example, you can use PyCryptodome library:
@@ -28,6 +30,8 @@ Encrypt the first block of your cleaned email using [3DES](https://pycryptodome.
 ``Key1 = 0123456789ABCDEF``  
 ``Key2 = 23456789ABCDEF01``  
 ``Key3 = 456789ABCDEF0123``
+
+If the input data is **shorter than 8 characters**, pad it with `\x00` bytes (null bytes) to make it exactly 8 bytes. If the email is **longer**, only the first 8 characters are used.
 
 Provide the ciphertext in hex.
 
