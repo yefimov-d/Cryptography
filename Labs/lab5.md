@@ -94,7 +94,7 @@ _Assumptions._ Let a hash function map inputs uniformly at random into a set of 
 The probability that all $N$ hashes are pairwise distinct (no collision) is
 
 $$
-P_{\text{no\_coll}}(N,m)=\prod_{i=0}^{N-1}\left(1-\frac{i}{m}\right).
+P_{\text{nocoll}}(N,m)=\prod_{i=0}^{N-1}\left(1-\frac{i}{m}\right).
 $$
 
 **(Theoretical) probability of at least one collision:**
@@ -142,7 +142,7 @@ Thus collisions become likely when $N$ is on the order of $\sqrt{m}$ — this is
 
 **Poisson approximation for the number of colliding pairs**
 
-Define $\lambda=\mathbb{E}[X]=\frac{N(N-1)}{2m}$. When $\lambda$ is small (rare collisions) and pairwise collision events are approximately independent, the distribution of $X$ is well-approximated by $\operatorname{Pois}(\lambda)$. In that regime,
+Define $\lambda=\mathbb{E}[X]=\frac{N(N-1)}{2m}$. When $\lambda$ is small (rare collisions) and pairwise collision events are approximately independent, the distribution of $X$ is well-approximated by $\text{Pois}(\lambda)$. In that regime,
 $\Pr(X=0)\approx e^{-\lambda}$, so $\Pr(\text{at least one collision}) \approx 1-e^{-\lambda}$ (consistent with the exponential approximation).
 
 Even with very large $m$, collisions can appear much earlier than intuition that expects $N\sim m$. The relevant scale is $N\sim\sqrt{m}$.
