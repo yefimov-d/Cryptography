@@ -21,49 +21,19 @@ Calculate probability of at least one collision and expected (mean) number of co
 - using only the approximation for 1.2:
 
  **(1.1)**  $m = 365$ (simulation of "days in a year") and $N = 23,\,50$.
+ 
  **(1.2)**  $m = 2^{160}$ (160-bit hash, ```SHA-1``` like) and $N = 10^{24}$.
 
 
-
 ---
 
-## Question 2 — Monte Carlo experiments
+## Question 2 — Hash Digests
 
-
-Write a program that performs a Monte Carlo experiment:
-
-- Repeat the experiment $T = 5000$ times.  
-- In each run, generate $N$ random numbers from the set $\{0, \dots, m-1\}$.  
-- Compute the number of colliding pairs, and  whether at least one collision occurred.  
-
-After $T$ runs:  
-- Calculate the **empirical probability of at least one collision** across experiments.  
-- Calculate the **average number of colliding pairs** across experiments.  
-
-Compare these values with the theoretical expectations: 
-
-- $\mathbb{E}[\text{num of pairs}] = \dfrac{N(N-1)}{2m}$  
-- $P_\text{coll} = 1 - \prod_{i=0}^{N-1} \left(1 - \tfrac{i}{m}\right)$ (or its approximation $1 - e^{-\mathbb{E}[\text{X}]}$), where $X$ is the number of colliding pairs.  
-
-Use the parameters:
-
-| Task | $m$      | $N$   |
-| ---- | -------- | ----- |
-| 2.1  | 365      | 23    |
-| 2.2  | 365      | 50    |
-| 2.3  | $2^{32}$ | 1000  |
-| 2.4  | $2^{32}$ | 10000 |
-
-
----
-
-## Question 3 — Hash Digests
-
-**(3.1)** Take your transformed email and compute its **MD5** hash. Then replace the first letter of your email with the letter x (if x was the first letter, replace it with a) and compute the **MD5** hash again. Compare the two digests. How many bits out of 128 have changed? Read about the [Avalanche Effect](https://en.wikipedia.org/wiki/Avalanche_effect).
+**(2.1)** Take your transformed email and compute its **MD5** hash. Then replace the first letter of your email with the letter x (if x was the first letter, replace it with a) and compute the **MD5** hash again. Compare the two digests. How many bits out of 128 have changed? Read about the [Avalanche Effect](https://en.wikipedia.org/wiki/Avalanche_effect).
 
 
 
-**(3.2)** Take the PDF file [here](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec3/AES.pdf). Compute its hash value using **SHA-256**. Output the hash values in hexadecimal format.
+**(2.2)** Take the PDF file [here](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec3/AES.pdf). Compute its hash value using **SHA-256**. Output the hash values in hexadecimal format.
 
 Use any available tool or library, such as ```PyCryptodome```, ```OpenSSL``` or ```hashlib``` (which may use ```OpenSSL``` internally). 
 
