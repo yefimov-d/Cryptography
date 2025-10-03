@@ -42,8 +42,8 @@ After $T$ runs:
 
 Compare these values with the theoretical expectations: 
 
-- $\mathbb{E}[\#\text{pairs}] = \dfrac{N(N-1)}{2m}$  
-- $P_\text{coll} = 1 - \prod_{i=0}^{N-1} \left(1 - \tfrac{i}{m}\right)$ (or its approximation $1 - e^{-\mathbb{E}[\#\text{pairs}]}$).  
+- $\mathbb{E}[\text{num of pairs}] = \dfrac{N(N-1)}{2m}$  
+- $P_\text{coll} = 1 - \prod_{i=0}^{N-1} \left(1 - \tfrac{i}{m}\right)$ (or its approximation $1 - e^{-\mathbb{E}[\text{X}]}$), where $X$ is the number of colliding pairs.  
 
 Use the parameters:
 
@@ -92,6 +92,7 @@ _Assumptions._ Let a hash function map inputs uniformly at random into a set of 
 **Probability of no collision:**
 
 The probability that all $N$ hashes are pairwise distinct (no collision) is
+
 $$
 P_{\text{no\_coll}}(N,m)=\prod_{i=0}^{N-1}\left(1-\frac{i}{m}\right).
 $$
@@ -99,7 +100,7 @@ $$
 **(Theoretical) probability of at least one collision:**
 
 $$
-P_{\text{coll}}(N,m)=1-P_{\text{no\_coll}}(N,m).
+P_{\text{coll}}(N,m)=1-P_{\text{no coll}}(N,m).
 $$
 
 **(Theoretical) expected number of colliding pairs:**
@@ -107,6 +108,7 @@ $$
 $$
 \mathbb{E}[X]=\frac{N(N-1)}{2m}.
 $$
+
 This gives the average number of colliding pairs (not the probability of at least one collision).
 
 **Exponential approximation (when $N\ll m$)**:
@@ -115,22 +117,27 @@ This gives the average number of colliding pairs (not the probability of at leas
 $$
 P_{\text{coll}}(N,m)\approx 1-\exp\!\left(-\frac{N(N-1)}{2m}\right).
 $$
+
 This approximation is accurate when $\frac{N^2}{m}$ is small-to-moderate (so higher-order terms in the log expansion are negligible).
 
 **Birthday bound (50% collision threshold)**
 
 Set $P_{\text{coll}}\approx 0.5$ in the exponential approximation:
+
 $$
 1-\exp\!\left(-\frac{N(N-1)}{2m}\right)=\tfrac{1}{2}
 \quad\Rightarrow\quad
 \exp\!\left(-\frac{N(N-1)}{2m}\right)=\tfrac{1}{2}.
 $$
+
 Taking logs and approximating $N(N-1)\approx N^2$ when $N$ is moderately large,
+
 $$
 -\frac{N^2}{2m}=\ln\frac{1}{2} = -\ln 2
 \quad\Rightarrow\quad
 N\approx\sqrt{2m\ln 2}\approx 1.17741\sqrt{m}.
 $$
+
 Thus collisions become likely when $N$ is on the order of $\sqrt{m}$ — this is the birthday bound.
 
 **Poisson approximation for the number of colliding pairs**
