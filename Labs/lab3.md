@@ -52,8 +52,9 @@ Provide the ciphertext in hex.
 2. Extract raw pixel bytes `P = img.tobytes()`; record `width×height` and `len(P)`.
 3. Use pad function from ``Crypto.Util.Padding`` to pad `P` with **PKCS#7** to 16-byte boundary → `P_padded`.
 4. Encrypt `P_padded` with AES-128:
+   - Key = ASCII-derived 16-byte key from cleaned email, padded with zeros if shorter.
    - ECB → `C_ecb`
-   - CBC (use given IV) → `C_cbc`
+   - CBC → `C_cbc` (use IV = ```451652008A75BF26D4B86AEE5A2CDF81```)
    Save `C_ecb` and `C_cbc` as binary files.
 5. For visualization: truncate each ciphertext to original `len(P)` and rebuild RGB images; save `tux_ecb.png`, `tux_cbc.png`.
 6. Compute SHA-256 (hex) of:
