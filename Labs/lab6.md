@@ -68,14 +68,19 @@ You are the attacker in the middle. You are given the public parameters `p,g`, t
 3. Decrypt the provided ciphertext with AES-256-ECB and PKCS#7 padding using key `K`.
 
 
-**Public parameters (given):** prime modulus: `p = 257` , generator: `g = 3`.  
+**Public parameters** 
+Prime modulus: `p = 257` , generator: `g = 3`.  
 
-**Public values (given)** 
+**Public values** 
 Alice’s public value: `A = 201`
 Bob’s public value:   `B = 45`.   
 
-**Encryption scheme (given):**
-- Shared secret is used to derive an AES key via PBKDF2:
-  - `K = PBKDF2-HMAC-SHA256(decimal value of the shared secret, salt = 16 zero bytes (0x00...00), iterations = 200000, dklen = 32)`
-- Symmetric encryption: **AES-256 in ECB mode** with **PKCS#7** padding.
+**Ciphertext**
+```febe49ef11b07faaec4a1c77cc5ab5f1bd8c4967d68092e6bd6ea8f9e928ef6f```
+
+**Encryption scheme:**
+Shared secret is used to derive an AES key via PBKDF2:
+  - `K = pbkdf2_hmac("sha256", decimal value of shared secret, salt=b'\x00' * 16, iterations=200000, dklen=32)`
+
+Symmetric encryption: **AES-256 in ECB mode** with **PKCS#7** padding.
 
