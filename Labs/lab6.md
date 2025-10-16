@@ -68,14 +68,14 @@ You are the attacker in the middle. You are given the public parameters `p,g`, t
 3. Decrypt the provided ciphertext with AES-256-ECB and PKCS#7 padding using key `K`.
 
 
-**Public parameters** 
+**Public parameters:** 
 Prime modulus: `p = 257` , generator: `g = 3`.  
 
-**Public values** 
+**Public values:** 
 Alice’s public value: `A = 201`
 Bob’s public value:   `B = 45`.   
 
-**Ciphertext**
+**Ciphertext:**
 ```febe49ef11b07faaec4a1c77cc5ab5f1bd8c4967d68092e6bd6ea8f9e928ef6f```
 
 **Encryption scheme:**
