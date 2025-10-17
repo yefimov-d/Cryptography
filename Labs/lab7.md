@@ -23,6 +23,7 @@ Use the following RSA parameters for all computations:
 - Plaintext message: $m = 9$
 
 Compute the ciphertext
+
 $$
 c \equiv m^e \pmod{n}.
 $$
@@ -85,16 +86,19 @@ Use the following ElGamal parameters for all computations:
 - Random ephemeral key: $k = 4$
 
 Compute the public key component
+
 $$
 y \equiv g^x \pmod{p}.
 $$
 
 Compute the ciphertext pair $(c_1, c_2)$ using
+
 $$
 c_1 \equiv g^k \pmod{p}, \quad c_2 \equiv m \cdot y^k \pmod{p}.
 $$
 
 Recover the original message using
+
 $$
 m \equiv c_2 \cdot (c_1^x)^{-1} \pmod{p}.
 $$
