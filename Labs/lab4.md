@@ -26,6 +26,7 @@ Provide the resulting ciphertext in **hexadecimal form**.
 Encrypt the cleaned email using [Salsa20](https://pycryptodome.readthedocs.io/en/latest/src/cipher/salsa20.html) with the key 
 ``A1B2C3D4E5F60718293A4B5C6D7E8F901112131415161718192A2B2C2D2E2F30``.
 
+Use an 8-byte sequence of all zero bytes as a nonce.
 Provide the resulting ciphertext in **hexadecimal form**.
 
 ---
