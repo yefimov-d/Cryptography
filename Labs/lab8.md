@@ -1,6 +1,6 @@
 # Assignment 8. Digital Signatures. Message Authentication Codes.
 
-## Question 1 — RSA-PSS
+## Question 1 — RSASSA-PKCS1-v1_5
 
 Download the [image](https://www.osadl.org/fileadmin/dam/images/tux-72.png) and the [provided RSA key files](https://github.com/yefimov-d/Cryptography/tree/master/Lectures/lec8).
 
