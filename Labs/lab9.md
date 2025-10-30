@@ -2,7 +2,7 @@
 
 ## Question 1 — Elliptic Curve over $F_{43}$
 
-Consider the elliptic curve $ y^2 = x^3 + x $ over the finite field \(\mathbb{F}_{43}\).
+Consider the elliptic curve $y^2 = x^3 + x$ over the finite field $\mathbb{F}_{43}$.
 
 - 1.1 List all affine points (all points except the point at infinity) of the curve and plot them on a discrete grid.
 
