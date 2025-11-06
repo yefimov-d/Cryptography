@@ -13,7 +13,7 @@ Consider the elliptic curve $y^2 = x^3 + x$ over the finite field $\mathbb{F}_{4
 
 Consider the message: ```Write me: example@example.com``` (substitute by your email).
 
-1. Load the private key from `privkey.der`.
+1. Download the private key [here](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec9/privkey.der).
 2. Compute the SHA-256 hash of the message.
 3. Sign the hash using ECC with the DSS scheme in [deterministic](https://datatracker.ietf.org/doc/html/rfc6979) mode.
 4. Output the resulting signature in hex.
