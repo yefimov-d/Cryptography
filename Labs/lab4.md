@@ -1,16 +1,5 @@
 # Assignment 4. Stream Ciphers
 
-For some tasks you will need your email. Perform the transformation as in the example:
-
-```
-r.gosling_fit_13_23_b_d@knute.edu.ua -> rgosling
-```
-That is:
-- take the part of the email **before `@`**,  
-- remove fragments like `_fit_...`, `_b_d`, etc.,  
-- remove all underscores `_`,  
-- **the result is the concatenation of the initial and the surname.**
-
 ---
 
 ## Question 1 — RC4

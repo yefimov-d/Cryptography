@@ -1,41 +1,30 @@
-# Assignment 1. Mathematical foundations of cryptography and steganography
-
-For some tasks you will need your email. Perform the transformation as in the example:
-
-```
-r.gosling_fit_13_23_b_d@knute.edu.ua -> rgosling
-```
-That is:
-- take the part of the email **before `@`**,  
-- remove fragments like `_fit_...`, `_b_d`, etc.,  
-- remove all underscores `_`,  
-- **the result is the concatenation of the initial and the surname.**
+# Лабораторна робота № 1. Математичні основи криптографії та стеганографії
 
 ---
 
-## Question 1 — Factorization
+## Питання 1 — Факторизація
 
-**Given four integers:**
+**Дано чотири цілих числа:**
 
 $$
 72; 95; 126; 143.
 $$
 
-1) Factor each number into primes.  
-2) For each number $n_i$, find its largest prime divisor $P(n_i)$.  
-3) Compute the sum
+1) Розкладіть кожне число на прості множники.  
+2) Для кожного числа $n_i$ знайдіть його найбільший простий дільник $P(n_i)$.  
+3) Обчисліть суму
 
 $$
 S=\sum_{i=1}^{4} P(n_i).
 $$
 
-_Leave your final answer as a single integer._
+_Дайте відповідь у вигляді одного цілого числа._
 
 ---
 
-## Question 2 — Modular calculations
+## Питання 2 — Модульні обчислення
 
-Take the prime $p=13$ and
+Візьміть просте число $p=13$ та
 
 $$
 \begin{aligned}
@@ -45,44 +34,44 @@ $$
 \end{aligned}
 $$
 
-1. Take the **first letter** of your cleaned email.  
-2. Let `k` be the decimal **ASCII value** of this letter (see https://www.ascii-code.com/).
+1. Візьміть **першу літеру** ваших вхідних даних.  
+2. Нехай `k` буде десятковим **ASCII-значенням** цієї літери (див. https://www.ascii-code.com/).
 
-Calculate the value of $S$:
+Обчисліть значення $S$:
 
 $$ S \equiv (a_1\cdot b_1^{\,p-1}\cdot c_1) \cdot k + 
 (a_2^{\,p-1}\cdot b_2\cdot c_2) \cdot k^2
       + (a_3\cdot b_3^{\,p-1}\cdot c_3) \cdot k^3 \pmod{p} $$
 
-> Example: If the first letter is `a`, then `k = 97` (ASCII).
+> Приклад: Якщо перша літера `a`, то `k = 97` (ASCII).
 
 ---
 
-## Question 3 — Euler's Totient Function
+## Питання 3 — Функція Ейлера
 
-1. Take the **last letter** of your cleaned email.  
-2. Let `m` be the decimal **ASCII value** of this letter.  
-3. Calculate **φ(m)**, where φ is **Euler's totient function**.
+1. Візьміть **останню літеру** ваших вхідних даних.  
+2. Нехай `m` буде десятковим **ASCII-значенням** цієї літери.  
+3. Обчисліть **φ(m)**, де φ — це **функція Ейлера**.
 
-> Example: If the last letter is `e`, then `m = 101` (ASCII). Then compute φ(101).
+> Приклад: Якщо остання літера `e`, то `m = 101` (ASCII). Тоді обчисліть φ(101).
 
 ---
 
-## Question 4 — Extended Euclidean Algorithm
+## Питання 4 — Розширений алгоритм Евкліда
 
-1. Take `k` (see Questions 2).  
-2. Use the **Extended Euclidean Algorithm** to find:
+1. Візьміть `k` (див. Питання 2).  
+2. Використовуйте **Розширений алгоритм Евкліда**, щоб знайти:
 
 $$
-\text{GCD}(k, 257) \text{ and } k^{-1} \mod 257 \text{ (if it exists).}
+\text{НСД}(k, 257) \text{ та } k^{-1} \mod 257 \text{ (якщо воно існує).}
 $$
 
 ---
 
-## Question 5 — Modular Exponentiation
+## Питання 5 — Модульне піднесення до степеня
  
-1. Take `k` and `m` (see Questions 2 and 3 for these values).  
-2. Compute the modular exponentiation:
+1. Візьміть `k` та `m` (значення з Питань 2 та 3).  
+2. Обчисліть модульне піднесення до степеня:
 
 $$
 (k \cdot m + 1)^{\phi(m)} \mod m
@@ -90,20 +79,20 @@ $$
 
 ---
 
-## Question 6 — Finite Field Arithmetic
+## Питання 6 — Арифметика в скінченних полях
 
 
-In AES, bytes are interpreted as elements of the finite field 
+В AES байти інтерпретуються як елементи скінченного поля 
 
 $$
 \mathbb{F}_{2^8} = \mathbb{F}_2[x] / (x^8 + x^4 + x^3 + x + 1).
 $$
 
-That is, each byte is treated as a polynomial over \(\mathbb{F}_2\), and multiplication is performed modulo the irreducible polynomial
+Тобто кожен байт розглядається як многочлен над \(\mathbb{F}_2\), а множення виконується за модулем незвідного многочлена
 
 $$
 p(x) = x^8 + x^4 + x^3 + x + 1.
 $$
 
 
-**Task.** Take two given values `k` and `m` (as defined in Questions 2 and 3 above).  Treat them as bytes (elements of $\mathbb{F}_{2^8}$) and compute $k \cdot m$ in AES field arithmetic. Provide your answer in decimal form.
+**Завдання.** Візьміть два заданих значення `k` та `m` (визначені в Питаннях 2 та 3 вище). Розглядайте їх як байти (елементи $\mathbb{F}_{2^8}$) і обчисліть $k \cdot m$ в арифметиці поля AES. Надайте відповідь у десятковій формі.
