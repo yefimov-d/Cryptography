@@ -1,68 +1,74 @@
-# Assignment 2. Historical Overview of Cryptographic Methods for Information Protection
+# Лабораторна робота № 2. Історичний огляд криптографічних методів захисту інформації
 
 ---
 
-## Question 1 — Caesar Cipher  
-Encrypt your transformed email username using the **Caesar cipher**.  
-**Key**: the first letter of your transformed email.  
+## Питання 1 — Шифр Цезаря  
+Зашифруйте свої [вхідні дані](https://github.com/yefimov-d/Cryptography/blob/master/Labs/input_data.md) допомогою **шифру Цезаря**.  
+**Ключ**: перша літера ваших вхідних даних.  
 
-The answer must be given as a sequence of English lowercase letters without quotation marks.
-
----
-
-## Question 2 — Vigenère Cipher  
-Encrypt the same transformed username using the **Vigenère cipher**.  
-**Key**: the first three letters of your transformed email.  
-
-The answer must be given as a sequence of English lowercase letters without quotation marks.
+Відповідь потрібно подати у вигляді послідовності малих літер англійського алфавіту без лапок.
 
 ---
 
-## Question 3 — Binary XOR of Username Letters  
-Take the transformed email and:  
-1. Convert each character into its **8-bit ASCII binary** form.  
-2. Group the first **2 letters** (16 bits).  
-3. Group the next **2 letters** (16 bits).  
-4. XOR these two 16-bit blocks together. 
+## Питання 2 — Шифр Віженера  
+Зашифруйте свої вхідні дані за допомогою **шифру Віженера**.  
+**Ключ**: перші три літери вашого перетвореного email.  
 
-The result is 16 bits (presented in binary). For example, `0110001011101100`.
+Відповідь потрібно подати у вигляді послідовності малих літер англійського алфавіту без лапок.
 
 ---
 
-## Question 4 — One-Time-Pad
+## Питання 3 — Бінарний XOR літер логіна  
+Візьміть свої вхідні дані та:  
+1. Перетворіть кожен символ у його **8-бітове ASCII-подання у двійковому вигляді**.  
+2. Об’єднайте перші **2 літери** (16 біт).  
+3. Об’єднайте наступні **2 літери** (16 біт).  
+4. Виконайте операцію XOR над цими двома 16-бітними блоками.  
 
-Let the Ukrainian alphabet be indexed $0,\dots,N-1$ (take $N=33$). Using additive one-time-pad encryption  
+Результат — це 16 біт (подані у двійковому вигляді). Наприклад: `0110001011101100`.
+
+---
+
+## Питання 4 — Одноразовий блокнот (One-Time Pad)
+
+Нехай український алфавіт індексується числами $0,\dots,N-1$ (візьміть $N=33$). Використовуючи адитивне шифрування одноразовим блокнотом  
 
 $$
 C_i = (P_i + K_i) \bmod N,
 $$
 
-determine the key which, when applied to the plaintext **«муха»**, produces the ciphertext **«слон»**. Show your letter-to-index mapping and all intermediate calculations.
+визначте ключ, який при застосуванні до відкритого тексту **«муха»** дає шифротекст **«слон»**. Покажіть відповідність літер і числових індексів, а також усі проміжні обчислення.
 
-The answer must be given as a sequence of Ukrainian lowercase letters without quotation marks.
-
----
-
-## Question 5 — Polybius square
-
-Encrypt the **transformed email** using the Polybius square (English alphabet). Apply **Method 1** from the lecture to obtain the ciphertext.
-
-The answer must be given as a sequence of English lowercase letters without quotation marks.
+Відповідь потрібно подати у вигляді послідовності малих літер українського алфавіту без лапок.
 
 ---
 
-## Question 6 — Cardano Grille
+## Питання 5 — Квадрат Полібія
 
-Consider the following 4×4 Cardano grille key (holes marked with `O`):
+Зашифруйте **перетворений email** за допомогою квадрата Полібія (англійський алфавіт). Застосуйте **Метод 1** з лекції для отримання шифротексту.
+
+Відповідь потрібно подати у вигляді послідовності малих літер англійського алфавіту без лапок.
+
+---
+
+## Питання 6 — Решітка Кардано
+
+Розгляньте наведений ключ решітки Кардано 4×4 (отворі позначені `O`):
 
 |     | **1** | **2** | **3** | **4** |
 |-----|-------|-------|-------|-------|
-| **1** |     |       |       |   O    |
-| **2** |      |       |    O   |      |
-| **3** |   O   |      |       |  O     |
-| **4** |       |       |     |       |
+| **1** |       |       |       |   O   |
+| **2** |       |       |   O   |       |
+| **3** |   O   |       |       |   O   |
+| **4** |       |       |       |       |
 
-Use this grille to encrypt the first 16 letters of your transformed email. Rotate the encryption grille clockwise. 
-If the email has fewer than 16 letters, pad the remaining positions with `a`.  
+Використайте цю решітку для шифрування перших 16 літер ваших вхідних даних. Після кожного заповнення повертайте решітку за годинниковою стрілкою.  
+Якщо вхідні дані містять менше ніж 16 літер, доповніть решту позицій літерами `a`.  
 
-Provide the ciphertext as a sequence of English lowercase letters, without quotation marks.
+Подайте шифротекст як послідовність малих літер англійського алфавіту без лапок.
+
+---
+
+## Додаткове завдання
+
+Обрати деякий текст. Обчислити частоти літер в тексті, побудувати гістограму частот. Реалізувати алгоритм Віженера та зашифрувати текст. Розшифрувати запропонований текст без початкової інформації про ключ. Опис криптоаналізу: http://practicalcryptography.com/cryptanalysis/stochastic-searching/cryptanalysis-vigenere-cipher/
