@@ -1,98 +1,98 @@
-# Assignment 3. Block Ciphers
+# Лабораторна робота №3. Блокові шифри
 
 ---
 
-## Question 1 — DES
-Encrypt the first block of your cleaned email using DES in ECB mode with the key: ``133457799BBCDFF1``
+## Питання 1 — DES
+Зашифруйте перший блок вашої очищеної електронної пошти, використовуючи DES у режимі ECB з ключем: `133457799BBCDFF1`.
 
-If the input data is **shorter than 8 characters**, pad it with `\x00` bytes (null bytes) to make it exactly 8 bytes. If the email is **longer**, only the first 8 characters are used.
+Якщо вхідні дані **коротші за 8 символів**, доповніть їх байтами `\x00` (нульові байти), щоб отримати рівно 8 байтів. Якщо електронна пошта **довша**, використовуються лише перші 8 символів.
 
-Give the ciphertext in hex.
+Наведіть шифротекст у шістнадцятковому форматі (hex).
 
-For example, you can use PyCryptodome library:
+Наприклад, можна використати бібліотеку PyCryptodome:  
 https://pycryptodome.readthedocs.io/en/latest/src/cipher/des.html
 
 ---
 
-## Question 2 — 3DES
-Encrypt the first block of your cleaned email using [3DES](https://pycryptodome.readthedocs.io/en/latest/src/cipher/des3.html) in ECB mode with keys:
-``Key1 = 0123456789ABCDEF``  
-``Key2 = 23456789ABCDEF01``  
-``Key3 = 456789ABCDEF0123``
+## Питання 2 — 3DES
+Зашифруйте перший блок вашої очищеної електронної пошти, використовуючи [3DES](https://pycryptodome.readthedocs.io/en/latest/src/cipher/des3.html) у режимі ECB з ключами:
 
-If the input data is **shorter than 8 characters**, pad it with `\x00` bytes (null bytes) to make it exactly 8 bytes. If the email is **longer**, only the first 8 characters are used.
+`Key1 = 0123456789ABCDEF`  
+`Key2 = 23456789ABCDEF01`  
+`Key3 = 456789ABCDEF0123`
 
-Provide the ciphertext in hex.
+Якщо вхідні дані **коротші за 8 символів**, доповніть їх байтами `\x00` (нульові байти), щоб отримати рівно 8 байтів. Якщо електронна пошта **довша**, використовуються лише перші 8 символів.
 
----
-
-## Question 3 — AES
-
-Take the first 16 bytes of your cleaned email (pad with zeros if shorter). Encrypt it using [AES-128](https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html) in ECB mode with the key:
-``2b7e151628aed2a6abf7158809cf4f3c``
-
-Provide the ciphertext in hex.
+Наведіть шифротекст у шістнадцятковому форматі (hex).
 
 ---
 
-## Question 4 — ECB vs CBC Mode
+## Питання 3 — AES
 
-1. Download [the image](https://www.osadl.org/fileadmin/dam/images/tux-72.png) and open with Pillow; convert to **RGB**.
-2. Extract raw pixel bytes `P = img.tobytes()`; record `width×height` and `len(P)`.
-3. Use pad function from ``Crypto.Util.Padding`` to pad `P` with **PKCS#7** to 16-byte boundary → `P_padded`.
-4. Encrypt `P_padded` with AES-128:
-   - Key = ASCII-derived 16-byte key from cleaned email, padded with zeros if shorter.
+Візьміть перші 16 байтів вашої очищеної електронної пошти (якщо коротше — доповніть нулями). Зашифруйте їх за допомогою [AES-128](https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html) у режимі ECB з ключем:
+
+`2b7e151628aed2a6abf7158809cf4f3c`
+
+Наведіть шифротекст у шістнадцятковому форматі (hex).
+
+---
+
+## Питання 4 — Режими ECB vs CBC
+
+1. Завантажте [зображення](https://www.osadl.org/fileadmin/dam/images/tux-72.png) і відкрийте його за допомогою Pillow; перетворіть у формат **RGB**.
+2. Витягніть сирі байти пікселів `P = img.tobytes()`; зафіксуйте `width×height` і `len(P)`.
+3. Використайте функцію `pad` з ``Crypto.Util.Padding`` для доповнення `P` за схемою **PKCS#7** до межі 16 байтів → `P_padded`.
+4. Зашифруйте `P_padded` за допомогою AES-128:
+   - Key = 16-байтовий ключ, отриманий з ASCII вашої очищеної електронної пошти; якщо коротший — доповніть нулями.
    - ECB → `C_ecb`
-   - CBC → `C_cbc` (use IV = ```451652008A75BF26D4B86AEE5A2CDF81```)
-   Save `C_ecb` and `C_cbc` as binary files.
-5. For visualization: truncate each ciphertext to original `len(P)` and rebuild RGB images; save `tux_ecb.png`, `tux_cbc.png`.
-6. Compute SHA-256 (hex) of:
-   - `C_ecb` (full padded ciphertext)
-   - `C_cbc` (full padded ciphertext)
-   <!-- - `tux_ecb.png` file
-   - `tux_cbc.png` file -->
-7. Write a short note (≤300 words) explaining why ECB leaks structure and CBC does not.
+   - CBC → `C_cbc` (використайте IV = `451652008A75BF26D4B86AEE5A2CDF81`)
+   Збережіть `C_ecb` і `C_cbc` як бінарні файли.
+5. Для візуалізації: обріжте кожен шифротекст до початкового `len(P)` і відновіть RGB-зображення; збережіть `tux_ecb.png`, `tux_cbc.png`.
+6. Обчисліть SHA-256 (hex) для:
+   - `C_ecb` (повний шифротекст із доповненням)
+   - `C_cbc` (повний шифротекст із доповненням)
+   <!-- - файл `tux_ecb.png`
+   - файл `tux_cbc.png` -->
+7. Напишіть коротке пояснення (≤300 слів), чому ECB розкриває структуру, а CBC — ні.
 
-Provide SHA-256 digests of ciphertexts as the answer.
+Надайте SHA-256 дайджести шифротекстів як відповідь.
 
 ---
 
-## Optional task: Implement Kalyna
+## Додаткове завдання: Реалізація Kalyna
 
-1. Implement Kalyna-128 (block=128 bits) with key=128 bits (rounds = 10).  
-2. Implement encryption and decryption (full reversible algorithm).  
-3. Include unit tests using official test vectors (ciphertext ⇄ plaintext).  
-4. Provide a small CLI or script to encrypt/decrypt hex inputs and to run test vectors.
+1. Реалізуйте Kalyna-128 (блок = 128 біт) з ключем = 128 біт (кількість раундів = 10).  
+2. Реалізуйте шифрування та дешифрування (повністю оборотний алгоритм).  
+3. Додайте модульні тести з використанням офіційних тестових векторів (ciphertext ⇄ plaintext).  
+4. Надайте невеликий CLI або скрипт для шифрування/дешифрування hex-входів і запуску тестових векторів.
 
-### Test vectors
+### Тестові вектори
 
-**Kalyna-128/128 encryption**
+**Kalyna-128/128 шифрування**
 
-``KEY:
- 000102030405060708090A0B0C0D0E0F``
+`KEY:
+000102030405060708090A0B0C0D0E0F`
 
-``PLAINTEXT:
- 101112131415161718191A1B1C1D1E1F``
+`PLAINTEXT:
+101112131415161718191A1B1C1D1E1F`
 
-``CIPHERTEXT:
- 81BF1C7D779BAC20E1C9EA39B4D2AD06``
+`CIPHERTEXT:
+81BF1C7D779BAC20E1C9EA39B4D2AD06`
 
-**Kalyna-128/128 decryption**
+**Kalyna-128/128 дешифрування**
 
-``KEY:
- 0F0E0D0C0B0A09080706050403020100``
+`KEY:
+0F0E0D0C0B0A09080706050403020100`
 
-``CIPHERTEXT:
- 1F1E1D1C1B1A19181716151413121110``
+`CIPHERTEXT:
+1F1E1D1C1B1A19181716151413121110`
 
-``PLAINTEXT:
- 7291EF2B470CC7846F09C2303973DAD7 ``
+`PLAINTEXT:
+7291EF2B470CC7846F09C2303973DAD7`
 
+---
 
+**Джерела**
 
-**References**
-
-Paper: https://eprint.iacr.org/2015/650.pdf
-Author's C implementation: https://github.com/Roman-Oliynykov/Kalyna-reference
-
-
+Стаття: https://eprint.iacr.org/2015/650.pdf  
+Реалізація автора на C: https://github.com/Roman-Oliynykov/Kalyna-reference
