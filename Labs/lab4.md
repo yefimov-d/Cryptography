@@ -1,37 +1,45 @@
-# Assignment 4. Stream Ciphers
+# Лабораторна робота № 4. Потокові шифри
 
 ---
 
-## Question 1 — RC4
+## Питання 1 — Псевдовипадковий генератор Блум - Блума - Шуба
 
-Encrypt the cleaned email using [RC4](https://pycryptodome.readthedocs.io/en/latest/src/cipher/arc4.html) with the key ``0123456789ABCDEF0123456789ABCDEF``.
+Визначте останній байт вхідних даних та інтерпретуйте його як початковий стан $x_0$ для генератора Блум - Блума - Шуба з параметрами $p = 47, q = 59$. Послідовність отриманих бітів $b_0, b_1, b_2, ...$ генерується як послідовність бітів парності значень $x_0, x_1, x_2, ...$, де $x_{i+1} = x_i^2 \mod pq$. 
 
-Provide the resulting ciphertext in **hexadecimal form**.
+Знайдіть період генератора: мінімальне $T$, для якого $x_i = x_{i+T}$.
+
+Зашифруйте свої вхідні дані, використовуючи згенерований ключовий потік. 
+
+## Питання 2 — RC4
+
+Зашифруйте свої вхідні дані за допомогою [RC4](https://pycryptodome.readthedocs.io/en/latest/src/cipher/arc4.html) з ключем ``0123456789ABCDEF0123456789ABCDEF``.
+
+Надайте отриманий шифротекст у **шістнадцятковому форматі (hexadecimal)**.
 
 ---
 
-## Question 2 — Salsa20
+## Питання 3 — Salsa20
 
-Encrypt the cleaned email using [Salsa20](https://pycryptodome.readthedocs.io/en/latest/src/cipher/salsa20.html) with the key 
+Зашифруйте свої вхідні дані за допомогою [Salsa20](https://pycryptodome.readthedocs.io/en/latest/src/cipher/salsa20.html) з ключем  
 ``A1B2C3D4E5F60718293A4B5C6D7E8F901112131415161718192A2B2C2D2E2F30``.
 
-Use an 8-byte sequence of all zero bytes as a nonce.
-Provide the resulting ciphertext in **hexadecimal form**.
+Використайте 8-байтову послідовність, що складається лише з нульових байтів, як **nonce**.  
+Надайте отриманий шифротекст у **шістнадцятковому форматі (hexadecimal)**.
 
 ---
 
-## Optional task: Implement STRUMOK
+## Додаткове завдання: Реалізація STRUMOK
 
-Implement the **STRUMOK** stream cipher. Your implementation should be able to encrypt and decrypt text using a given key.
+Реалізуйте потоковий шифр **STRUMOK**. Ваша реалізація повинна вміти шифрувати та дешифрувати текст, використовуючи заданий ключ.
 
-**Requirements:**
+**Вимоги:**
 
-1. Write a function `encrypt(text, key)` that takes a plaintext string and a key, and returns the ciphertext.
-2. Write a function `decrypt(ciphertext, key)` that takes a ciphertext string and the same key, and returns the original plaintext.
-3. Ensure that your implementation correctly handles arbitrary-length input.
-4. Include a simple demonstration showing encryption and decryption of a sample text.
-5. Add comments explaining the logic of your implementation.
+1. Напишіть функцію `encrypt(text, key)`, яка приймає рядок відкритого тексту та ключ і повертає шифротекст.
+2. Напишіть функцію `decrypt(ciphertext, key)`, яка приймає шифротекст і той самий ключ та повертає початковий відкритий текст.
+3. Переконайтеся, що ваша реалізація коректно обробляє вхідні дані довільної довжини.
+4. Додайте просту демонстрацію, що показує шифрування та дешифрування зразкового тексту.
+5. Додайте коментарі, які пояснюють логіку вашої реалізації.
 
-**References**  
+**Джерело**  
 
-Paper: https://periodicals.karazin.ua/cscs/article/view/12017
+Стаття: https://periodicals.karazin.ua/cscs/article/view/12017
