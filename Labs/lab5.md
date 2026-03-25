@@ -1,117 +1,104 @@
-# Assignment 5. Hash Functions
+# Лабораторна робота № 5. Хеш-функції
 
 ---
 
-## Question 1 — Birthday paradox 
+## Питання 1 — Парадокс днів народження
 
-Calculate probability of at least one collision and expected (mean) number of colliding pairs:
+Обчисліть імовірність принаймні однієї колізії та очікувану (середню) кількість пар, що колізіонують:
 
-- exactly (using the product formula) and using the approximation for 1.1 
-- using only the approximation for 1.2:
+- точно (використовуючи формулу добутку) та за допомогою наближення для **(1.1)**;
+- використовуючи лише наближення для **(1.2)**:
 
- **(1.1)**  $m = 365$ (simulation of "days in a year") and $N = 23,\,50$.
- 
- **(1.2)**  $m = 2^{160}$ (160-bit hash, ```SHA-1``` like) and $N = 10^{24}$.
+**(1.1)** $m = 365$ («дні у році») та $N = 23, 50$ («кількість людей»).
 
-
----
-
-## Question 2 — Hash Digests
-
-**(2.1)** Take your transformed email and compute its **MD5** hash. Then replace the first letter of your email with the letter x (if x was the first letter, replace it with a) and compute the **MD5** hash again. Compare the two digests. How many bits out of 128 have changed? Read about the [Avalanche Effect](https://en.wikipedia.org/wiki/Avalanche_effect).
-
-
-
-**(2.2)** Take the PDF file [here](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec3/AES.pdf). Compute its hash value using **SHA-256**. Output the hash values in hexadecimal format.
-
-Use any available tool or library, such as ```PyCryptodome```, ```OpenSSL``` or ```hashlib``` (which may use ```OpenSSL``` internally). 
-
----
-## Optional Task: Implement Kupyna
-
-Implement the **Kupyna cryptographic hash function**. Your implementation should:
-- Support hash lengths from 8 bits up to 512 bits in 8-bit increments.
-- Accept an input string or file and return the hash in **hexadecimal format**.
-- Be tested on several sample inputs to verify correctness.
-
-Test vectors can be found in the paper.
-
-Paper: https://eprint.iacr.org/2015/885.pdf
-
-Author's reference C implementation: https://github.com/Roman-Oliynykov/Kupyna-reference
-
+**(1.2)** $m = 2^{160}$ (160-бітний хеш, подібний до `SHA-1`) та $N = 10^{24}$. Знайдіть за формулою $N \approx \sqrt{2m \ln 2} \approx 1.17741\sqrt{m}$ кількість хешів, коли ймовірність існування колізіїї в наборі перевищує 0.5.
 
 
 ---
 
-## Appendix
+## Питання 2 — Хеш-дайджести
 
-_Assumptions._ Let a hash function map inputs uniformly at random into a set of $m$ possible values (buckets). Take $N$ independent inputs (e.g. names, messages, keys). We treat each input’s hash as an independent uniformly distributed integer in $\{0,\dots,m-1\}$.
+**(2.1)** Візьміть свої вхідні дані та обчисліть хеш **MD5**. Потім замініть першу літеру вашої електронної адреси на літеру `x` (якщо першою літерою була `x`, замініть її на `a`) і знову обчисліть хеш **MD5**. Порівняйте два дайджести. Скільки бітів зі 128 змінилося? Прочитайте про [лавинний ефект](https://en.wikipedia.org/wiki/Avalanche_effect) (Avalanche Effect).
 
-**Probability of no collision:**
+**(2.2)** Візьміть PDF-файл за [посиланням](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec3/AES.pdf). Обчисліть його хеш-значення за допомогою **SHA-256**. Виведіть хеш-значення у шістнадцятковому (hexadecimal) форматі.
 
-The probability that all $N$ hashes are pairwise distinct (no collision) is
+Використовуйте будь-який доступний інструмент або бібліотеку, наприклад `PyCryptodome`, `OpenSSL` або `hashlib` (яка може використовувати `OpenSSL` внутрішньо).
 
-$$
-P_{\text{nocoll}}(N,m)=\prod_{i=0}^{N-1}\left(1-\frac{i}{m}\right).
-$$
+---
 
-**(Theoretical) probability of at least one collision:**
+## Додаткове завдання: Реалізація «Купини»
 
-$$
-P_{\text{coll}}(N,m)=1-P_{\text{no coll}}(N,m).
-$$
+Реалізуйте криптографічну хеш-функцію **«Купина»** (ДСТУ 7564:2014). Ваша реалізація повинна:
+- Підтримувати довжину хешу від 8 до 512 бітів з кроком у 8 бітів.
+- Приймати вхідний рядок або файл і повертати хеш у **шістнадцятковому форматі**.
+- Бути протестованою на кількох прикладах вхідних даних для перевірки коректності.
 
-**(Theoretical) expected number of colliding pairs:**
+Тестові вектори можна знайти у науковій статті.
 
-$$
-\mathbb{E}[X]=\frac{N(N-1)}{2m}.
-$$
+Стаття: https://eprint.iacr.org/2015/885.pdf
 
-This gives the average number of colliding pairs (not the probability of at least one collision).
+Еталонна реалізація мовою C від автора: https://github.com/Roman-Oliynykov/Kupyna-reference
 
-**Exponential approximation (when $N\ll m$)**:
+## Додаток
 
+_Припущення._ Нехай хеш-функція відображає вхідні дані рівномірно та випадково у множину з $m$ можливих значень (кошиків). Візьмемо $N$ незалежних вхідних значень (наприклад, імен, повідомлень, ключів). Ми розглядаємо хеш кожного вхідного значення як незалежне рівномірно розподілене ціле число в діапазоні $\{0, \dots, m-1\}$.
 
-$$
-P_{\text{coll}}(N,m)\approx 1-\exp\!\left(-\frac{N(N-1)}{2m}\right).
-$$
+**Ймовірність відсутності колізій:**
 
-This approximation is accurate when $\frac{N^2}{m}$ is small-to-moderate (so higher-order terms in the log expansion are negligible).
-
-**Birthday bound (50% collision threshold)**
-
-Set $P_{\text{coll}}\approx 0.5$ in the exponential approximation:
+Ймовірність того, що всі $N$ хешів є попарно різними (колізій немає), становить:
 
 $$
-1-\exp\!\left(-\frac{N(N-1)}{2m}\right)=\tfrac{1}{2}
-\quad\Rightarrow\quad
-\exp\!\left(-\frac{N(N-1)}{2m}\right)=\tfrac{1}{2}.
+P_{\text{nocoll}}(N, m) = \prod_{i=0}^{N-1} \left( 1 - \frac{i}{m} \right).
 $$
 
-Taking logs and approximating $N(N-1)\approx N^2$ when $N$ is moderately large,
+**Ймовірність принаймні однієї колізії:**
 
 $$
--\frac{N^2}{2m}=\ln\frac{1}{2} = -\ln 2
-\quad\Rightarrow\quad
-N\approx\sqrt{2m\ln 2}\approx 1.17741\sqrt{m}.
+P_{\text{coll}}(N, m) = 1 - P_{\text{nocoll}}(N, m).
 $$
 
-Thus collisions become likely when $N$ is on the order of $\sqrt{m}$ — this is the birthday bound.
+**Математичне очікування кількості пар, що колізіонують:**
 
-**Poisson approximation for the number of colliding pairs**
+$$
+\mathbb{E}[X] = \frac{N(N-1)}{2m}.
+$$
 
-Define $\lambda=\mathbb{E}[X]=\frac{N(N-1)}{2m}$. When $\lambda$ is small (rare collisions) and pairwise collision events are approximately independent, the distribution of $X$ is well-approximated by $\text{Pois}(\lambda)$. In that regime,
-$\Pr(X=0)\approx e^{-\lambda}$, so $\Pr(\text{at least one collision}) \approx 1-e^{-\lambda}$ (consistent with the exponential approximation).
+Це дає середню кількість пар, що конфліктують (не ймовірність принаймні однієї колізії).
 
-Even with very large $m$, collisions can appear much earlier than intuition that expects $N\sim m$. The relevant scale is $N\sim\sqrt{m}$.
+**Експоненціальне наближення (коли $N \ll m$):**
 
-For a **cryptographic hash** of $b$ bits, $m=2^b$, so the birthday bound gives collision work around $2^{b/2}$. For example, a 128-bit hash resists brute-force collisions up to about $2^{64}$ operations.
+$$
+P_{\text{coll}}(N, m) \approx 1 - \exp \left( -\frac{N(N-1)}{2m} \right).
+$$
 
-The expected number of colliding pairs $\mathbb{E}[X]$ gives a simple way to estimate how many collisions (on average) will be present in a dataset of size $N$, while $P_{\text{coll}}$ quantifies the chance of at least one collision.
+Це наближення є точним, коли значення $\frac{N^2}{m}$ є малим.
 
+**Межа парадоксу днів народження (поріг колізії 50%)**
 
+Встановимо $P_{\text{coll}} \approx 0.5$ в експоненціальному наближенні:
 
+$$
+1 - \exp \left( -\frac{N(N-1)}{2m} \right) = \frac{1}{2} \quad \Rightarrow \quad \exp \left( -\frac{N(N-1)}{2m} \right) = \frac{1}{2}.
+$$
+
+Логарифмуючи та припускаючи $N(N-1) \approx N^2$ для достатньо великих $N$:
+
+$$
+-\frac{N^2}{2m} = \ln \frac{1}{2} = -\ln 2 \quad \Rightarrow \quad N \approx \sqrt{2m \ln 2} \approx 1.17741\sqrt{m}.
+$$
+
+Таким чином, колізії стають імовірними, коли $N$ має порядок $\sqrt{m}$ — це і є межа парадоксу днів народження.
+
+**Наближення Пуассона для кількості пар, що колізіонують**
+
+Визначимо $\lambda = \mathbb{E}[X] = \frac{N(N-1)}{2m}$. Коли $\lambda$ мале (рідкісні колізії) і події попарних колізій є приблизно незалежними, розподіл $X$ добре апроксимується розподілом $\text{Pois}(\lambda)$. У такому режимі:
+$\Pr(X=0) \approx e^{-\lambda}$, отже $\Pr(\text{принаймні одна колізія}) \approx 1 - e^{-\lambda}$ (що узгоджується з експоненціальним наближенням).
+
+Навіть при дуже великих $m$ колізії можуть виникати значно раніше, ніж підказує інтуїція, яка очікує $N \sim m$. Відповідний масштаб — $N \sim \sqrt{m}$.
+
+Для **криптографічного хешу** розмірністю $b$ бітів, $m = 2^b$, тому межа днів народження дає складність пошуку колізії близько $2^{b/2}$. Наприклад, 128-бітний хеш протистоїть спробам повного перебору (brute-force) колізій приблизно до $2^{64}$ операцій.
+
+Очікувана кількість пар, що колізіонують $\mathbb{E}[X]$, дає простий спосіб оцінити, скільки колізій (в середньому) буде присутньо в наборі даних розміром $N$, тоді як $P_{\text{coll}}$ кількісно визначає шанс виникнення хоча б однієї колізії.
 
 
 
