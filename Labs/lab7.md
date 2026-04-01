@@ -1,95 +1,93 @@
-# Assignment 7. Asymmetric Cryptosystems
+# Лабораторна робота №7. Асиметричні криптосистеми
 
 ---
 
+## Питання 1 — Підручниковий RSA
 
-## Question 1 — Textbook RSA
+Використовуйте наступні параметри RSA для всіх обчислень:
 
-Use the following RSA parameters for all computations:
+- Прості числа: $p = 11$, $q = 13$
+- Відкрита експонента: $e = 7$
+- Повідомлення відкритого тексту: $m = 9$
 
-- Primes: $p = 11$, $q = 13$
-- Public exponent: $e = 7$
-- Plaintext message: $m = 9$
-
-Compute the ciphertext
+Обчисліть шифротекст
 
 $$
 c \equiv m^e \pmod{n}.
 $$
 
-Find the private exponent. Recover the original message using
+Знайдіть секретну експоненту. Відновіть початкове повідомлення за допомогою
 
 $$
 m \equiv c^d \pmod{n}.
 $$
 
-## Question 2 — RSA Key Generation with Pseudoprimes
+## Питання 2 — Генерація ключів RSA з псевдопростими числами
 
-This exercise demonstrates what goes wrong if the "primes" used are actually composite pseudoprimes. Suppose you have checked the numbers $p = 530881$ and $q = 552721$ with the Fermat test and use them as if they were primes (in fact, these are Carmichael numbers).
+Ця вправа демонструє, що саме йде не так, якщо "прості" числа, які використовуються, насправді є складеними псевдопростими числами. Припустимо, ви перевірили числа $p = 530881$ і $q = 552721$ за допомогою тесту Ферма та використовуєте їх так, ніби вони є простими (насправді це числа Кармайкла).
 
-Compute:
+Обчисліть:
 
 - $n = p \cdot q$.
-- The totient estimate $\varphi(n) = (p-1)(q-1)$.
-- Choose the public exponent $e = 65537$ and verify that $\gcd(e, \varphi(n)) = 1$.
-- Compute the private exponent $d$ such that $e \cdot d \equiv 1 \pmod{\varphi(n)}$.
+- Оцінку функції Ейлера $\varphi(n) = (p-1)(q-1)$.
+- Виберіть відкриту експоненту $e = 65537$ і переконайтеся, що $\gcd(e, \varphi(n)) = 1$.
+- Обчисліть секретну експоненту $d$, таку що $e \cdot d \equiv 1 \pmod{\varphi(n)}$.
 
-Convert the byte string of your cleaned email [into an integer $m$ using big-endian byte order](https://stackoverflow.com/questions/50509017/how-is-int-from-bytes-calculated). Encrypt:
+Перетворіть байтовий рядок ваших вхідних даних [в ціле число $m$, використовуючи порядок байтів big-endian](https://stackoverflow.com/questions/50509017/how-is-int-from-bytes-calculated). Зашифруйте:
 
 $$
 c \equiv m^e \pmod n.
 $$
 
-Then attempt decryption with $d$:
+Потім спробуйте розшифрувати за допомогою $d$:
 
 $$
 \hat m \equiv c^{d} \pmod n.
 $$
 
-Does $\hat m = m$? Report the result and explain numerically what happens.
+Чи виконується рівність $\hat m = m$? Запишіть результат і поясніть чисельно, що відбувається.
+## Питання 3 — RSA-OAEP
 
-## Question 3 — RSA-OAEP
-
-Use the public exponent 65537 and [generate](https://pycryptodome.readthedocs.io/en/latest/src/public_key/public_key.html) your own RSA key pair with a key size of 2048 bits. Keep both the **public and private key**; the private key is required for verification.
-
-
-**Encrypt your cleaned email** using [RSA-OAEP](https://pycryptodome.readthedocs.io/en/latest/src/cipher/oaep.html) with the following parameters:
-   - Hash function **SHA-256**
-   - [Mask Generation Function](https://en.wikipedia.org/wiki/Mask_generation_function) (MGF1) based on **SHA-256**
-   - Label: empty (`b""`)
-
-**Provide the following for verification**:
-   - **Ciphertext** as a hexadecimal string.
-   - **Your private key** (PEM format).
-   - **Seed used in OAEP padding**.
+Використайте відкриту експоненту 65537 та [згенеруйте](https://pycryptodome.readthedocs.io/en/latest/src/public_key/public_key.html) власну пару ключів RSA з розміром ключа 2048 біт. Збережіть як **відкритий, так і секретний ключ**; секретний ключ потрібен для перевірки.
 
 
-## Question 4 — ElGamal Cryptosystem
+**Зашифруйте ваші вхідні дані**, використовуючи [RSA-OAEP](https://pycryptodome.readthedocs.io/en/latest/src/cipher/oaep.html) з наступними параметрами:
+   - Хеш-функція **SHA-256**
+   - [Функція формування маски](https://en.wikipedia.org/wiki/Mask_generation_function) (MGF1) на основі **SHA-256**
+   - Мітка (label): порожня (`b""`)
 
-Use the following ElGamal parameters for all computations:
+**Надайте наступні дані для перевірки**:
+   - **Шифротекст** у вигляді шістнадцяткового рядка.
+   - **Ваш секретний і відкритий ключі** (у форматі PEM).
+   - **Seed (випадкове число), використане в доповненні OAEP**.
 
-- Prime modulus: $p = 17$
-- Generator (primitive root modulo $p$): $g = 3$
-- Private key: $x = 5$
-- Plaintext message: $m = 7$
-- Random ephemeral key: $k = 4$
 
-Compute the public key component
+## Запитання 4 — Криптосистема Ель-Гамаля
+
+Використайте наступні параметри Ель-Гамаля для всіх обчислень:
+
+- Простий модуль: $p = 17$
+- Генератор (первісний корінь за модулем $p$): $g = 3$
+- Секретний ключ: $x = 5$
+- Повідомлення відкритого тексту: $m = 7$
+- Випадковий ефемерний ключ: $k = 4$
+
+Обчисліть компонент відкритого ключа
 
 $$
 y \equiv g^x \pmod{p}.
 $$
 
-Compute the ciphertext pair $(c_1, c_2)$ using
+Обчисліть пару шифротексту $(c_1, c_2)$ за допомогою
 
 $$
 c_1 \equiv g^k \pmod{p}, \quad c_2 \equiv m \cdot y^k \pmod{p}.
 $$
 
-Recover the original message using
+Відновіть початкове повідомлення за допомогою
 
 $$
 m \equiv c_2 \cdot (c_1^x)^{-1} \pmod{p}.
 $$
 
-Verify that the decrypted message equals the original plaintext $m$.
+Переконайтеся, що розшифроване повідомлення дорівнює початковому відкритому тексту $m$.

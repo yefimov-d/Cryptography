@@ -1,26 +1,26 @@
-# Assignment 6. Key Exchange
+# Лабораторна робота №6. Обмін ключами
 
 ---
 
-## Question 1 — The Discrete Logarithm Problem
+## Питання 1 — Задача дискретного логарифмування
 
-Let $p = 257$ and $g = 3$.  
-Let $y$ be the **decimal ASCII code** of the **last letter** of your cleaned email.
+Нехай $p = 257$ і $g = 3$.  
+Нехай $y$ — це **десятковий код ASCII** **останньої літери** вашої очищеної електронної пошти.
 
-Find the integer $x$ such that  
+Знайдіть таке ціле число $x$, що  
 
 $$
 g^x \equiv y \pmod{p}.
 $$
 
----
+----
 
-## Question 2 — Diffie–Hellman Key Exchange (2048-bit MODP Group)
+## Питання 2 — Обмін ключами Діффі-Геллмана (2048-бітна група MODP)
 
-Alice and Bob would like to use the Diffie–Hellman algorithm to generate a shared secret for symmetric encryption. They use the [2048-bit MODP Group](https://www.rfc-editor.org/rfc/rfc3526.html?utm_source=chatgpt.com#page-3) from the [Internet Key Exchange (IKE) protocol](https://en.wikipedia.org/wiki/Internet_Key_Exchange).
+Аліса та Боб хочуть використовувати алгоритм Діффі-Геллмана для створення спільного секрету для симетричного шифрування. Вони використовують [2048-бітну групу MODP](https://www.rfc-editor.org/rfc/rfc3526.html) з [протоколу обміну інтернет-ключами (IKE)](https://en.wikipedia.org/wiki/Internet_Key_Exchange).
 
-The generator is: $g = 2$.
-The prime is defined as:
+Генератор: $g = 2$.
+Просте число визначено як:
 
 $$
 p = 2^{2048} - 2^{1984} - 1 + 2^{64} \cdot \left( \lfloor 2^{1918} \pi \rfloor + 124476 \right)
@@ -42,34 +42,30 @@ DE2BCBF6 95581718 3995497C EA956AE5 15D22618 98FA0510
 15728E5A 8AACAA68 FFFFFFFF FFFFFFFF
 ```
 
-Define Alice’s private key as the **ASCII value of the first letter** of the cleaned email (lowercase, without symbols).  Define Bob’s private key as the **ASCII value of the second letter** of the cleaned email.  
+Визначте приватний ключ Аліси як **значення ASCII першої літери** ваших вхідних даних (у нижньому регістрі, без символів). Визначте приватний ключ Боба як **значення ASCII другої літери** ваших вхідних даних.  
 
-Compute Alice’s public value, Bob’s public value, shared secret.
+Обчисліть відкрите значення Аліси, відкрите значення Боба та спільний секрет.
 
 ---
+## Питання 3 — Активна атака на Діффі–Геллмана
 
-## Question 3 — Active attack on Diffie–Hellman
+Ви є зловмисником посередині. Вам надано відкриті параметри `p,g`, відкриті значення `A` та `B`, а також шифротекст (у шістнадцятковому форматі), який Аліса надсилає Бобу (шифротекст і будь-які метадані, необхідні для розшифрування, будуть надані). **Ваша мета — відновити відкритий текст.**
 
-You are the attacker in the middle. You are given the public parameters `p,g`, the public values `A` and `B`, and the ciphertext (hex) that Alice sends to Bob (ciphertext and any metadata needed for decryption will be provided). **Your goal is to recover the plaintext.**
-
-1. Recover the shared secret `S` (integer) used by Alice and Bob.  
-2. Derive the 256-bit AES key `K` using [PBKDF2-HMAC-SHA256](https://docs.python.org/3/library/hashlib.html) with the exact parameters below.
-3. Decrypt the provided ciphertext with AES-256-ECB and PKCS#7 padding using key `K`.
+1. Відновіть спільний секрет `S` (ціле число), який використовують Аліса та Боб.  
+2. Сформуйте 256-бітний ключ AES `K` за допомогою [PBKDF2-HMAC-SHA256](https://docs.python.org/3/library/hashlib.html) з точними параметрами, наведеними нижче.
+3. Розшифруйте наданий шифротекст за допомогою AES-256-ECB із доповненням PKCS#7, використовуючи ключ `K`.
 
 
-**Public parameters:** 
-Prime modulus: `p = 257` , generator: `g = 3`.  
+**Відкриті параметри:** Простий модуль: `p = 257`, генератор: `g = 3`.  
 
-**Public values:** 
-Alice’s public value: `A = 201`
-Bob’s public value:   `B = 45`.   
+**Відкриті значення:** Відкрите значення Аліси: `A = 201`
+Відкрите значення Боба:   `B = 45`.   
 
-**Ciphertext:**
+**Шифротекст:**
 ```febe49ef11b07faaec4a1c77cc5ab5f1bd8c4967d68092e6bd6ea8f9e928ef6f```
 
-**Encryption scheme:**
-Shared secret is used to derive an AES key via PBKDF2:
+**Схема шифрування:**
+Спільний секрет використовується для формування ключа AES за допомогою функції формування ключа PBKDF2:
   - `K = pbkdf2_hmac("sha256", decimal value of shared secret, salt=b'\x00' * 16, iterations=200000, dklen=32)`
 
-Symmetric encryption: **AES-256 in ECB mode** with **PKCS#7** padding.
-
+Симетричне шифрування: **AES-256 у режимі ECB** із доповненням **PKCS#7**.
