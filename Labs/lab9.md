@@ -13,7 +13,7 @@
 
 Розглянемо повідомлення: ```Write me: example@example.com``` (замініть на вашу електронну адресу).
 
-1. Завантажте приватний ключ [тут](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec9/privkey.der).
+1. Завантажте приватний ключ [тут](https://github.com/yefimov-d/Cryptography/blob/master/Lectures/lec9/).
 2. Обчисліть SHA-256 хеш повідомлення.
 3. Підпишіть хеш, використовуючи ECC зі схемою DSS у [детермінованому](https://datatracker.ietf.org/doc/html/rfc6979) режимі.
 4. Виведіть отриманий підпис у шістнадцятковому форматі.
